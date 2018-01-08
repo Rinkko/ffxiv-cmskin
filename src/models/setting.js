@@ -67,7 +67,7 @@ export default {
     },
   },
   effects: {
-    *root({}, { put, select }) {
+    *root({ payload: data }, { put, select }) {
       const Setting = yield select(state => state.setting);
       try {
         const Cookie = getCookie('setting');

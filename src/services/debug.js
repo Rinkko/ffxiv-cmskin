@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import _ from 'lodash';
 import { fakeData } from '../data/index';
 

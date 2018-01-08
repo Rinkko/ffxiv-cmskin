@@ -88,7 +88,7 @@ class App extends Component {
       <MenuItem key="reload" onClick={this.handleReload}>
         <Lang id="menu.refresh" />
       </MenuItem>,
-      <MenuItem key="setting" onClick={this.handleRoot}>
+      <MenuItem key="root" onClick={this.handleRoot}>
         <Lang id="menu.root" />
       </MenuItem>,
       !isInDevelop ? null : (
@@ -120,7 +120,7 @@ class App extends Component {
     ) : (
       <div className={$.uiTrans ? style.iconTrans : style.icon} onClick={this.handleFullscreen}>
         <div className={style.iconInner}>
-          <img src="/img/icon.png" />
+          <img alt="logo" src="/img/icon.png" />
         </div>
       </div>
     );

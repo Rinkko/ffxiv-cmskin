@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const QueryString = (function() {
   // This function is anonymous, is executed immediately and
   // the return value is assigned to QueryString!
@@ -224,4 +226,4 @@ class wsImpl extends wsInterface {
   }
 }
 
-export default { wsImpl };
+export { wsImpl };

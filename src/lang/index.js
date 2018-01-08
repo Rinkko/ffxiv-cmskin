@@ -1,4 +1,7 @@
+import LangCN from './cn';
+import LangEN from './en';
+
 export default {
-  cn: require('./cn'),
-  en: require('./en'),
+  cn: LangCN,
+  en: LangEN,
 };

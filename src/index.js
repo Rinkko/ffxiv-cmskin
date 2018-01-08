@@ -5,6 +5,10 @@ import createHistory from 'history/createBrowserHistory';
 import Console from './utils/console';
 import BaiduTongji from './services/baiduTongji';
 import Debug from './services/debug';
+import router from './router';
+import act from './models/act';
+import root from './models/root';
+import setting from './models/setting';
 import './index.scss';
 
 // 1. Initialize
@@ -19,12 +23,12 @@ const app = dva({
 app.use(createLoading());
 
 // 3. Model
-app.model(require('./models/setting'));
-app.model(require('./models/act'));
-app.model(require('./models/root'));
+app.model(setting);
+app.model(act);
+app.model(root);
 
 // 4. Router
-app.router(require('./router'));
+app.router(router);
 
 // 5. Start
 app.start('#root');

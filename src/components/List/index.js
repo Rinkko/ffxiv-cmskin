@@ -52,7 +52,7 @@ const ListView = ({ tab, chart, item, firstItem, hasDps, avps, isBattle, ...$ })
       title: item.damage.highest ? item.damage.highest : LangStr('setting.damage.title'),
       color: options.Setting.damage.color,
       number: item.damage.ps,
-      progress: parseInt(item.damage.ps) / parseInt(firstItem.damage.ps),
+      progress: parseInt(item.damage.ps, 10) / parseInt(firstItem.damage.ps, 10),
     },
     heal: {
       value: 'healing',
@@ -60,7 +60,7 @@ const ListView = ({ tab, chart, item, firstItem, hasDps, avps, isBattle, ...$ })
       title: item.healing.highest ? item.healing.highest : LangStr('setting.healing.title'),
       color: options.Setting.healing.color,
       number: item.healing.ps,
-      progress: parseInt(item.healing.ps) / parseInt(firstItem.healing.ps),
+      progress: parseInt(item.healing.ps, 10) / parseInt(firstItem.healing.ps, 10),
     },
     tank: {
       value: 'tanking',
@@ -68,14 +68,14 @@ const ListView = ({ tab, chart, item, firstItem, hasDps, avps, isBattle, ...$ })
       title: LangStr('setting.tanking.title'),
       color: options.Setting.tanking.color,
       number: item.tanking.total,
-      progress: parseInt(item.tanking.total) / parseInt(firstItem.tanking.total),
+      progress: parseInt(item.tanking.total, 10) / parseInt(firstItem.tanking.total, 10),
     },
   };
 
   const firstTabData = {
-    dps: parseInt(firstItem.damage.ps),
-    heal: parseInt(firstItem.healing.ps),
-    tank: parseInt(firstItem.tanking.total),
+    dps: parseInt(firstItem.damage.ps, 10),
+    heal: parseInt(firstItem.healing.ps, 10),
+    tank: parseInt(firstItem.tanking.total, 10),
   };
 
   const listClass = classnames.bind(style)('list', {
@@ -130,8 +130,8 @@ const ListView = ({ tab, chart, item, firstItem, hasDps, avps, isBattle, ...$ })
   let overProgress = false;
 
   if (tab === 'heal') {
-    if (parseInt(item.healing.over) > $.qtOverHealLow) playLevel = 'low';
-    if (parseInt(item.healing.over) > 0 && parseInt(item.healing.over) < $.qtOverHealHigh)
+    if (parseInt(item.healing.over, 10) > $.qtOverHealLow) playLevel = 'low';
+    if (parseInt(item.healing.over, 10) > 0 && parseInt(item.healing.over, 10) < $.qtOverHealHigh)
       playLevel = 'high';
     if (!$.pureHps) overProgress = item.healing.over;
   }

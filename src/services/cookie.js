@@ -7,9 +7,8 @@ const setCookie = (name, value) => {
 
 const getCookie = name => {
   const reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)');
-  let arr;
-  if ((arr = document.cookie.match(reg))) return JSON.parse(arr[2]);
-  else return null;
+  let arr = document.cookie.match(reg);
+  return arr ? JSON.parse(arr[2]) : null;
 };
 
 export { setCookie, getCookie };

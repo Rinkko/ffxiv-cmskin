@@ -50,7 +50,10 @@ export default {
 
           // 过量是否计入hps
           if (pureHps)
-            item.healing.ps = parseInt(item.healing.ps * (100 - parseInt(item.healing.over)) / 100);
+            item.healing.ps = parseInt(
+              item.healing.ps * (100 - parseInt(item.healing.over, 10)) / 100,
+              10
+            );
 
           // 图标和历史记录相关
           if (!newChart[item.name]) newChart[item.name] = [];

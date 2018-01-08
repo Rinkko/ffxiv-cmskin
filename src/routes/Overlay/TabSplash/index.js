@@ -21,7 +21,7 @@ class Splash extends Component {
 
   MapList = type =>
     LangStr(type).map((item, key) => {
-      if (!this.state[type] && key > 1) return;
+      if (!this.state[type] && key > 1) return false;
       const Data = item.split('|');
       const title = Data[1];
       const desc = Data[2] + (Data[3] ? ` ${Data[3]}` : '');

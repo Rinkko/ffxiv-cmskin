@@ -6,7 +6,7 @@ const parseEncounter = db => ({
   time: db['duration'],
   zone: db['CurrentZoneName'],
   name: db['title'],
-  duration: parseInt(db['DURATION']),
+  duration: parseInt(db['DURATION'], 10),
   damage: parseDamage(db),
   healing: parseHealing(db),
   tanking: parseTanking(db),
@@ -25,37 +25,37 @@ const parseCombatantData = (db, Damage) => ({
 // 分组：damage/healing/tanking
 
 const parseDamage = db => ({
-  total: parseInt(db['damage']),
-  ps: parseInt(db['encdps']),
-  ps10: parseInt(db['Last10DPS']),
-  ps30: parseInt(db['Last30DPS']),
-  ps60: parseInt(db['Last60DPS']),
-  count: parseInt(db['swings']),
+  total: parseInt(db['damage'], 10),
+  ps: parseInt(db['encdps'], 10),
+  ps10: parseInt(db['Last10DPS'], 10),
+  ps30: parseInt(db['Last30DPS'], 10),
+  ps60: parseInt(db['Last60DPS'], 10),
+  count: parseInt(db['swings'], 10),
   percent: db['damage%'],
   criticals: db['crithit%'],
   directhit: db['DirectHitPct'],
   critdirecthit: db['CritDirectHitPct'],
   highest: parseHighest(db['maxhit']),
-  kills: parseInt(db['kills']),
+  kills: parseInt(db['kills'], 10),
 });
 
 const parseHealing = db => ({
-  total: parseInt(db['healed']),
-  ps: parseInt(db['enchps']),
-  count: parseInt(db['heals']),
+  total: parseInt(db['healed'], 10),
+  ps: parseInt(db['enchps'], 10),
+  count: parseInt(db['heals'], 10),
   percent: db['healed%'],
   over: db['OverHealPct'],
   criticals: db['critheal%'],
   highest: parseHighest(db['maxheal']),
-  deaths: parseInt(db['deaths']),
+  deaths: parseInt(db['deaths'], 10),
 });
 
 const parseTanking = (db, Damage) => ({
-  total: parseInt(db['damagetaken']),
-  percent: parseInt(db['damagetaken'] / Damage * 100) + '%',
+  total: parseInt(db['damagetaken'], 10),
+  percent: parseInt(db['damagetaken'] / Damage * 100, 10) + '%',
   parry: db['ParryPct'],
   block: db['BlockPct'],
-  dodge: parseInt(100 - db['IncToHit']) + '%',
+  dodge: parseInt(100 - db['IncToHit'], 10) + '%',
 });
 
 // 处理Combatant数组
@@ -64,7 +64,7 @@ const parseCombatant = db => {
   let Combatant = [];
   let Damage = 0;
   _.forEach(db, item => {
-    Damage = Damage + parseInt(item['damagetaken']);
+    Damage = Damage + parseInt(item['damagetaken'], 10);
   });
   _.forEach(db, item => {
     Combatant.push(parseCombatantData(item, Damage));
